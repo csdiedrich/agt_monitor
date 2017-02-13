@@ -1,6 +1,8 @@
 #!/bin/bash
 ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
 /usr/bin/expect -c 'spawn ssh-copy-id root@nagios
+expect "(yes/no)?"
+send "yes\n"
 expect "password:"
 send "'$PWD_ROOT'\n"
 expect eof'
