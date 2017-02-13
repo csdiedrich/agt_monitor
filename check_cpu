@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+
+warning=70
+
+critical=90
+
+value=$(iostat -c 1 3 | sed -e 's/,/./g' | tr -s ' ' ';' | sed '/^$/d' | tail -1|awk -F';' '{print $2 + $4}')
+
+if [ 1 -eq "$(echo "${value} < ${critical}" | bc)" ];
+
+then
+
+        STATUS="0"
+
+        echo "OK - ${value}% de cpu."
+
+else
+
+        echo "CRITICAL - ${value}% de cpu."
+
+        STATUS="2"
+
+fi
+
+exit $STATUS

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+MEMORIA=$( free -m | grep -i mem | awk '{ print $4 }')
+
+FREE=$(free -m | grep -i mem | awk '{ print $4 }')
+
+
+
+if [ $FREE -gt 500 ]; then
+
+        STATUS="0"
+
+        echo "OK - ${FREE}M de Memoria livre."
+
+else
+
+        echo "CRITICAL - ${FREE}M de Memoria livre."
+
+        STATUS="2"
+
+fi
+
+exit $STATUS
+
+
