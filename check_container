@@ -3,9 +3,9 @@ number=$(python /root/scripts/get.py)
 if [ $number -lt 5 ];
 then
         STATUS="0"
-        echo "OK - Number of Containers."
+        echo "OK - Number of Containers: $number"
 else
-        echo "CRITICAL - Number of Containers."
+        echo "CRITICAL - Number of Containers: $number"
         STATUS="2"
 fi
 
