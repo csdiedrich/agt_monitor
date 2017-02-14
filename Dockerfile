@@ -5,6 +5,6 @@ COPY check_* /usr/lib/nagios/plugins/
 ADD nrpe.cfg /etc/nagios/nrpe.cfg
 ADD template.cfg /opt/template.cfg
 RUN mkdir /root/scripts
-COPY *.sh /root/scripts/
+COPY scripts/* /root/scripts/
 RUN chmod +x /root/scripts/*.sh
 CMD ["/root/scripts/run.sh"]
