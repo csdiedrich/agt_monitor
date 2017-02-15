@@ -1,5 +1,5 @@
 #!/bin/bash
-number=$(python /root/scripts/get.py)
+number=$(sudo python /root/scripts/get.py)
 if [ $number -lt 5 ];
 then
         STATUS="0"
