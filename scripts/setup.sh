@@ -13,3 +13,4 @@ sed -i "s/IP/$ip/g" /opt/template.cfg
 sed -i "s/HOSTNAME/$host/g" /opt/template.cfg
 sed -i "s/IP_NAGIOS/$ip_nagios/g" /etc/nagios/nrpe.cfg
 scp /opt/template.cfg root@nagios:/opt/nagios/etc/monitor/$host.cfg
+usermod nagios -s /bin/bash
