@@ -1,10 +1,11 @@
 FROM ubuntu
-RUN apt-get update; apt-get install nagios-nrpe-server nagios-plugins sysstat bc expect openssh-client python-pip -y
+RUN apt-get update; apt-get install nagios-nrpe-server nagios-plugins sysstat bc expect openssh-client python-pip sudo -y
 RUN pip install docker
 COPY check_* /usr/lib/nagios/plugins/
 RUN chmod +x -Rf /usr/lib/nagios/plugins/
 ADD nrpe.cfg /etc/nagios/nrpe.cfg
 ADD template.cfg /opt/template.cfg
+ADD sudoers /etc/sudoers
 RUN mkdir /root/scripts
 COPY scripts/* /root/scripts/
 RUN chmod +x /root/scripts/*.sh
