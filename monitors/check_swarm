@@ -1,0 +1,31 @@
+        managers = client.nodes.list(filters={'role': 'manager'})
+        faileds = ""
+        for manager in managers:
+                if manager.attrs["ManagerStatus"]["Reachability"] != "reachable":
+                        faileds += manager.attrs["Description"]["Hostname"]+","
+        if faileds != "":
+                print "CRITICAL - Manager: ",faileds,"In failed state"
+                sys.exit(2)
+        else:
+                print "OK - Manager State"
+                sys.exit(0)
+
+def CheckNodes():
+        nodes = client.nodes.list(filters={'role': 'worker'})
+        faileds = ""
+        for manager in nodes:
+                if manager.attrs["Status"]["State"] != "ready":
+                        faileds += manager.attrs["Description"]["Hostname"]+","
+        if faileds != "":
+                print "CRITICAL - Node:",faileds," In failed state"
+                sys.exit(2)
+        else:
+                print "OK - Node State"
+                sys.exit(0)
+
+if __name__ == "__main__":
+        args=sys.argv[1:]
+        if args[0] == "managers":
+                CheckManagers()
+        elif args[0] == "nodes":
+                CheckNodes()
