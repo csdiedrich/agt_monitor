@@ -1,3 +1,9 @@
+#!/usr/bin/python
+import docker
+import sys
+client = docker.from_env()
+
+def CheckManagers():         
         managers = client.nodes.list(filters={'role': 'manager'})
         faileds = ""
         for manager in managers:
